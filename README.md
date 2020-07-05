@@ -1,2 +1,2 @@
 # Foundation
-Setup a Foundation.
+Setup the Foundation.
