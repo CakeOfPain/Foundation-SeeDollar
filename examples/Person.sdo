@@ -1,0 +1,45 @@
+// These librarys have to be included in order to work with See-dollar!
+#include <stdio.h>
+#include <stdlib.h>
+
+// To include a file.sdo from the same folder (using See-dollar) type this: '$(<path/file.sdo>)'
+
+// In order to declare a class (based on a struct), you have to type a '$' sign and than the name of the class
+$Person {
+    // All variables in the class, which do not have a '$'-sign at the beginning, are attributes of it.
+    char* first_name;
+    char* last_name;
+    int age;
+    // If you are about to have a reference of Person in the instance of Person, use: 'this <name of reference>' to implement a reference of the class itself as attribute.
+    
+    $(char* first_name, char* last_name, int age) // The '$()' method represents the constructor of the class
+    {
+        // 'self' is a reference to the instance of the class
+        self->first_name = first_name;
+        self->last_name = last_name;
+        self->age = age;
+    }
+
+    // $<type> means that this function is a method of the class
+    $void print()
+    {
+        // 'self' is also here a reference to the instance of the class
+        printf("First name: %s\n", self->first_name);
+        printf("Last name: %s\n", self->last_name);
+        printf("Age: %i\n", self->age);
+    }
+}
+
+int main(int argc, const char **argv)
+{
+    Person* simon = $Person("Simon", "Smith", 20);
+    simon->print(simon); // This line calls the method 'print' of simon (an instance of Person)
+
+    simon = $None_Person(simon); // This is how you delete (deallocate) the object (an instance of Person) without garbage collector (coming soon) correctly
+    // The reference to the object (called simon), points now to 'NULL'
+    // If you want, you are able to create a new instance of Person and let the reference (called simon) point to it.
+    // Example: simon = $Person("new Simon", "Smith", 23);
+
+    // Make sure, you deleted (deallocated) all references before a function (If you don't need the object/instance anymore) or the program ends.
+    return 0;
+}
