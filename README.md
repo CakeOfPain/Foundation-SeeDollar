@@ -33,3 +33,11 @@ int main(int argc, const char **argv)
   return 0;
 }
 ```
+
+## Compile to c
+### Windows
+`python compiler_seedollar.py file.sdo file.c`
+or if you rename the compiler: `python <name of compiler>.py file.sdo file.c`
+### Linux
+`./compiler_seedollar.py file.sdo file.c`
+or if you rename the compiler: `./<name of compiler>.py file.sdo file.c`
