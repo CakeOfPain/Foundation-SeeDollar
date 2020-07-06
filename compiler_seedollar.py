@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Autor: Leo Englert
 # describtion: Compiles c$-code to pure c-code
 import sys
