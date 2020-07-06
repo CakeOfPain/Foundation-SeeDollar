@@ -1,8 +1,14 @@
 # It's c with classes, but gets compiled to pure c
 Classes which are defined, will be compiled into structs and functions.
 
-# Program code like this:
+# Aims:
+* Code like in c, but with classes based on structs. 
+* Memory management, included garbage collection. 
+* Simple error handling. 
+* does not replace most of c
 
+# Program code like this:
+```
 $Name_of_class 
 {
   char* attribute1;
@@ -26,3 +32,4 @@ int main(int argc, const char \*\*argv)
   obj = $None_Name_of_class(obj);
   return 0;
 }
+´´´
