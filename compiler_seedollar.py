@@ -3,6 +3,13 @@
 import sys
 import re
 
+# Steps:
+#       1. Load the content of the target file
+#       2. split it up in words (TODO: Make sure string and new-lines doesn't get destructed)
+#       3. interpret all words, keyword is the dollarsign
+#       4. compile the classes into structs and functions
+#       5. build file.c
+
 def nativetype(typelabel):
     if typelabel in ["short", "int", "long", "float", "double", "char"]:
         return 1
