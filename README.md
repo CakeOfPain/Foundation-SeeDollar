@@ -1,4 +1,4 @@
-![Seedollar Logo](Logo.png =176x186)
+![Seedollar Logo](./Logo.png =176x186)
 # It's c with classes, but gets compiled to pure c
 Defined classes, will be compiled into structs and functions.
 
