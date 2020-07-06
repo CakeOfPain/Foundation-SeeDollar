@@ -1,13 +1,13 @@
 # It's c with classes, but gets compiled to pure c
 Defined classes, will be compiled into structs and functions.
 
-# Aims:
+## Aims:
 * Code like in c, but with classes based on structs. 
 * Memory management, included garbage collection. 
 * Simple error handling. 
 * does not replace most of c
 
-# Program code like this:
+## Program code like this:
 ```
 $Name_of_class 
 {
