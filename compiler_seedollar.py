@@ -117,7 +117,7 @@ class BluePrint(object):
             c += "\tself->" + x[2] + "=" + typeindex(x[0]) + ";\n" #1 = Name, 0 = type
         for x in self.methodes:
             c += "\tself->" + x[1] + "=" + self.name + "__" + x[1] + ";\n"
-        c += self.constructor_extensions + "\n}\n"
+        c += self.constructor_extensions + "\n return self; \n}\n"
         c += self.name + "* $None_" + self.name + "(" + self.name + "* obj){\n"
         c += "\tfree(obj);\n\treturn (" + self.name + "*) NULL;\n"
         c += "}\n"
