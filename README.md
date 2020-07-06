@@ -25,7 +25,7 @@ $Name_of_class
   }
 }
 
-int main(int argc, const char \*\*argv)
+int main(int argc, const char **argv)
 {
   Name_of_class* obj = $Name_of_class("String", 0);
   obj->methode1(obj, 2);
