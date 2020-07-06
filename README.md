@@ -1,5 +1,5 @@
 # It's c with classes, but gets compiled to pure c
-Classes which are defined, will be compiled into structs and functions.
+Defined classes, will be compiled into structs and functions.
 
 # Aims:
 * Code like in c, but with classes based on structs. 
