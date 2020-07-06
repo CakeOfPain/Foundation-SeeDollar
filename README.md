@@ -1,3 +1,4 @@
+![Seedollar Logo](Logo.png)
 # It's c with classes, but gets compiled to pure c
 Defined classes, will be compiled into structs and functions.
 
