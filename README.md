@@ -20,7 +20,7 @@ $Name_of_class
     self->attribute2 = attr2;
   }
   
-  $void methode1(int arg1)
+  $void method1(int arg1)
   {
     self->attribute2 = arg1;
   }
@@ -29,7 +29,7 @@ $Name_of_class
 int main(int argc, const char **argv)
 {
   Name_of_class* obj = $Name_of_class("String", 0);
-  obj->methode1(obj, 2);
+  obj->method1(obj, 2);
   obj = $None_Name_of_class(obj);
   return 0;
 }
