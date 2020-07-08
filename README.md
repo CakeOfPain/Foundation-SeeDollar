@@ -2,6 +2,9 @@
 # It's C with classes, but gets compiled to pure c
 Defined classes, will be compiled into structs and functions.
 
+## What do I have to know in order to work with Seedollar?
+Of course Seedollar is a C-extension (not a library), so you need knowledge in the C programming language.
+
 ## In which cases is Seedollar helpful?
 Seedollar is not everyone's thing, especially if you're used to code in C++ or Java.
 But if you have to switch from these languages into C, then it might be the right thing for you.
@@ -50,10 +53,16 @@ int main(int argc, const char **argv)
 * Don't use Seedollar, if you don't use it in your code
 
 ## Compile to c
+You will need python to compile Seedollar to C. Here is a link to the python homepage: [python-homepage](https://www.python.org/)
+
 ### Windows
-`python compiler_seedollar.py file.sdo file.c`
+`python compiler_seedollar.py file.sdo file.c` 
 or if you rename the compiler: `python <name of compiler>.py file.sdo file.c`
+
+Normally Windows has an inbuilt python interpreter `py compiler_seedollar.py file.sdo file.c`
+
 ### Linux
+Has also normally an inbuilt python interpreter.
 `./compiler_seedollar.py file.sdo file.c`
 or if you rename the compiler: `./<name of compiler>.py file.sdo file.c`
 
