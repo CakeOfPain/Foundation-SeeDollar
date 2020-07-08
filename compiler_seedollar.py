@@ -12,11 +12,13 @@ import re
 #       4. compile the classes into structs and functions
 #       5. build file.c
 
+# This function checks if the type is a numeric type or a pointer, if so it returns 1 for numeric or 0 for pointer
 def nativetype(typelabel):
     if typelabel in ["short", "int", "long", "float", "double", "char"]:
         return 1
     return 0
 
+# This class is a scanner which finds codeblocks and other structures in the code
 class Scanner(object):
     def __init__(self, code):
         self.code = code
@@ -83,6 +85,7 @@ def typeindex(index):
     elif index == 1:
         return "0"
 
+# This class is a type of form, to compile the class-definition into pure c (functions and structs)
 class BluePrint(object):
     def __init__(self, name):
         self.name = name
@@ -90,6 +93,7 @@ class BluePrint(object):
         self.methodes = []
         self.constructor_extensions = ""
         self.constructor_arguments = ""
+    # This method compiles the values of the form into pure c
     def build_c(self):
         global typeindex
         c = ""
@@ -123,40 +127,52 @@ class BluePrint(object):
         c += "}\n"
         return c
 
+# Gets the arguments from the system (console) and the number of arguments. It's like in the main function of c
 argv = sys.argv
 argc = len(argv)
 
+# Checks that we have at least two (actually three) arguments
 if argc <= 2:
     print("Too few arguments! [usage:] seedollar path/to/c_code")
     exit(1)
-path_to_file = argv[1]
-write_to_path = argv[2]
+
+path_to_file = argv[1] # target file (path)
+write_to_path = argv[2] # build file (path)
+# Reads whole content of target file
 cdo_file = open(path_to_file, "r")
 code = cdo_file.read()
 cdo_file.close()
 
+# Removes all line-comments of the code
 code = re.sub(
     r"//.*\n",
     "",
     code
 )
 
-#code = input(">>> ")
-
+# List of classes that were created (At the moment unused, maybe later on)
 classes = []
+
+# Function which compiles Seedollar-code into pure c
 def compile_to_c(code):
     global classes
+    # splits all operators that are relevant for compiling with spaces
     code = code.replace("$", " $ ")
     code = code.replace("(", " ( ")
     code = code.replace(")", " ) ")
     code = code.replace("{", " { ")
     code = code.replace("}", " } ")
     code = code.replace(";", " ; ")
+    # Creates a scanner for going through all words in the code
     sc = Scanner(code.strip().split())
+    # placeholder blueprint reference
     blueprint = None
+    # string which gets returned as c-code at the end of the function
     c_code = ""
-    while sc.hasNext():
-        command = sc.next()
+    while sc.hasNext(): # loops through all words in the code (if scanner has no word left, sc.hasNext() returns False)
+        command = sc.next() # command is a placeholder for the current word
+
+        # goes through all the syntax and builds for defined classes blueprints (blueprints gets compiled into c structs and functions)
         if command == "{":
             sc.back()
             c_code += "{" + sc.readCurlyBreaket() + "}"
@@ -213,15 +229,22 @@ def compile_to_c(code):
     c_code = c_code.replace("typedef", "\ntypedef")
     c_code = c_code.replace("$ ", "$")
     return c_code
-c_code = compile_to_c(code)
+c_code = compile_to_c(code) # code of target-file gets compiled into pure c
+
+# Adds throw function for simple error handling (specialy for "Out of Memory")
 c_code = "void $throw(char* exception, char* message, int line, char* function_name);" + c_code + """
 void $throw(char* exception, char* message, int line, char* function_name){
     fprintf(stderr, "\\n[Exception:%s] %s \\nReference -> line: %i, function:%s\\n\\n", exception, message, line, function_name);
 }
 """
 
+# Sends a message to the user that all is compiled
 print("Compiling is done!")
+
+# Writes c-code to build-file that the user has defined before
 output_file = open(write_to_path, "w")
 output_file.write(c_code)
 output_file.close()
+
+# Sends a message to the user that everything is completed
 print("Writing to '"+write_to_path+"' is done!")
