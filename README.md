@@ -62,7 +62,7 @@ or if you rename the compiler: `python <name of compiler>.py file.sdo file.c`
 Normally Windows has an inbuilt python interpreter `py compiler_seedollar.py file.sdo file.c`
 
 ### Linux
-Has also normally an inbuilt python interpreter.
+Has also normally an inbuilt python interpreter.\
 `./compiler_seedollar.py file.sdo file.c`
 or if you rename the compiler: `./<name of compiler>.py file.sdo file.c`
 
