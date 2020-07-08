@@ -53,7 +53,7 @@ int main(int argc, const char **argv)
 * Don't use Seedollar, if you don't use it in your code
 
 ## Compile to c
-You will need python to compile Seedollar to C. Here is a link to the python homepage: [python-homepage](https://www.python.org/)
+You will need a python interpreter to compile Seedollar to C. Here is a link to the python homepage: [python-homepage](https://www.python.org/)
 
 ### Windows
 `python compiler_seedollar.py file.sdo file.c` 
