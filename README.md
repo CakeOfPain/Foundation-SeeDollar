@@ -7,7 +7,7 @@ Seedollar is not everyone's thing, especially if you're used to code in C++ or J
 But if you have to switch from these languages into C, then it might be the right thing for you.
 The problem is that C doesn't like classes like in OOP languages. C only accepts structs that cannot contain any functions (except function-pointers).
 C-structs are complexe, especially it comes to dynamic created structs which you need in order to use dynamic lists and other data-structures.
-So if you're not used to c-structs and you don't want to deal with these things, then Seedollar is
+So if you're not used to C-structs and you don't want to deal with these things, then Seedollar is
 for you.
 
 ## Aims:
