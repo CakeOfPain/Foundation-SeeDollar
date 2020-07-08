@@ -18,6 +18,7 @@ Person* $Person( char* first_name, char* last_name, int age){
 	self->age=0;
 	self->print=Person__print;
  self->first_name = first_name ; self->last_name = last_name ; self->age = age ;
+	return self;
 }
 Person* $None_Person(Person* obj){
 	free(obj);
