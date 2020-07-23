@@ -123,9 +123,9 @@ class BluePrint(object):
         for x in self.methodes:
             c += "\tself->" + x[1] + "=" + self.name + "__" + x[1] + ";\n"
         c += self.constructor_extension + "\n return self; \n}\n"
-        c += self.name + "* $None_" + self.name + "(" + self.name + "* obj){\n"
+        c += self.name + "* $None_" + self.name + "(" + self.name + "* self){\n"
         c += self.destructor_extension + "\n"
-        c += "\tfree(obj);\n\treturn (" + self.name + "*) NULL;\n"
+        c += "\tfree(self);\n\treturn (" + self.name + "*) NULL;\n"
         c += "}\n"
         return c
 
