@@ -91,8 +91,9 @@ class BluePrint(object):
         self.name = name
         self.attributes = []
         self.methodes = []
-        self.constructor_extensions = ""
+        self.constructor_extension = ""
         self.constructor_arguments = ""
+        self.destructor_extension = ""
     # This method compiles the values of the form into pure c
     def build_c(self):
         global typeindex
@@ -121,8 +122,9 @@ class BluePrint(object):
             c += "\tself->" + x[2] + "=" + typeindex(x[0]) + ";\n" #1 = Name, 0 = type
         for x in self.methodes:
             c += "\tself->" + x[1] + "=" + self.name + "__" + x[1] + ";\n"
-        c += self.constructor_extensions + "\n return self; \n}\n"
+        c += self.constructor_extension + "\n return self; \n}\n"
         c += self.name + "* $None_" + self.name + "(" + self.name + "* obj){\n"
+        c += self.destructor_extension + "\n"
         c += "\tfree(obj);\n\treturn (" + self.name + "*) NULL;\n"
         c += "}\n"
         return c
@@ -198,7 +200,9 @@ def compile_to_c(code):
                         if token == "$":
                             if sc.peek() == "(":
                                 blueprint.constructor_arguments = sc.readBreaket()
-                                blueprint.constructor_extensions = sc.readCurlyBreaket()
+                                blueprint.constructor_extension = sc.readCurlyBreaket()
+                            elif sc.peek() == "{":
+                                blueprint.destructor_extension = sc.readCurlyBreaket()
                             else:
                                 methodes.append(
                                         [sc.next(), sc.next(), sc.readBreaket(), sc.readCurlyBreaket()]
